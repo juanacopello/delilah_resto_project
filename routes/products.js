@@ -2,8 +2,13 @@ const express = require ('express');
 const server = express();
 const sequelize = require('../sql');
 
-//Get available products
-server.get('/', async (req, res) => {
+
+//Middlewares 
+const authMiddleware = require('../middlewares/authMiddleware')
+const adminMiddleWare = require('../middlewares/adminMiddleware')
+
+//Get available products (Users and Admins)
+server.get('/', authMiddleware, async (req, res) => {
   try{
     const data = await sequelize.query('SELECT* FROM products WHERE is_available = 1',
     {type: sequelize.QueryTypes.SELECT},
@@ -15,8 +20,8 @@ server.get('/', async (req, res) => {
   }
 });
 
-//Add a New Product
-server.post('/', async (req, res) => {
+//Add a New Product (Admins only)
+server.post('/', authMiddleware, async (req, res) => {
   try{
     const {product_id, name, price, price_discount, image_url, is_available} = req.body;
     const data = await sequelize.query(
@@ -31,8 +36,8 @@ server.post('/', async (req, res) => {
   
 });
 
-//Update Values from a product using product_id
-server.put('/:product_id', async (req, res) => {
+//Update Values from a product using product_id (Admins only)
+server.put('/:product_id', authMiddleware, async (req, res) => {
   try{
   const {name, price, price_discount, image_url, is_available} = req.body;
   await sequelize.query(
@@ -51,8 +56,8 @@ server.put('/:product_id', async (req, res) => {
   }
 })
 
-//Delete a product using product_id
-server.delete('/:product_id', async(req, res) => {
+//Delete a product using product_id (Admins only)
+server.delete('/:product_id', authMiddleware, async (req, res) => {
   try{
     const data = await sequelize.query(
       `DELETE FROM products WHERE product_id = ${req.params.product_id}`,
