@@ -19,6 +19,18 @@ server.post('/', async (req, res) =>{
   }
 })
 
-//Update User Information
+//Get User Information (Admins only)
+//Put Admin Middleware
+
+server.get('/', async (req, res) => {
+  try{
+    const userData = await sequelize.query('SELECT* FROM users WHERE role_id = 2',
+    {type:sequelize.QueryTypes.SELECT})
+    res.send(userData)
+  }
+  catch(err){
+    res.send(err)
+  }
+});
 
 module.exports = server;
