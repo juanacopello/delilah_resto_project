@@ -2,7 +2,12 @@ const express = require ('express');
 const server = express();
 const sequelize = require('../sql')
 
-//Create new user
+//Middlewares 
+const adminMiddleWare = require('../middlewares/adminMiddleware')
+const authMiddleware = require('../middlewares/authMiddleware')
+
+/*Crear un nuevo usuario
+Create a new user*/
 server.post('/', async (req, res) =>{
   try{
       const {username, fullname, email, phone_number, address, password} = req.body
@@ -19,10 +24,10 @@ server.post('/', async (req, res) =>{
   }
 })
 
-//Get User Information (Admins only)
-//Put Admin Middleware
+/*Acceder a la información de los usuarios. Solo administradores
+Access users's information. Only administrators can do this*/
 
-server.get('/', async (req, res) => {
+server.get('/', authMiddleware, adminMiddleWare, async (req, res) => {
   try{
     const userData = await sequelize.query('SELECT* FROM users WHERE role_id = 2',
     {type:sequelize.QueryTypes.SELECT})

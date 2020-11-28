@@ -2,12 +2,12 @@ const express = require ('express');
 const server = express();
 const sequelize = require('../sql');
 
-
 //Middlewares 
 const authMiddleware = require('../middlewares/authMiddleware')
 const adminMiddleWare = require('../middlewares/adminMiddleware')
 
-//Get available products (Users and Admins)
+/*Tener un listado de productos habilitados.
+Get the list of available products. Only administrators can do this.*/
 server.get('/', authMiddleware, async (req, res) => {
   try{
     const data = await sequelize.query('SELECT* FROM products WHERE is_available = 1',
@@ -20,8 +20,9 @@ server.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-//Add a New Product (Admins only)
-server.post('/', authMiddleware, async (req, res) => {
+/*Agregar un nuevo producto. Solo administradores. 
+Add a new product. Only administrators can do this.*/
+server.post('/', authMiddleware, adminMiddleWare, async (req, res) => {
   try{
     const {product_id, name, price, price_discount, image_url, is_available} = req.body;
     const data = await sequelize.query(
@@ -36,8 +37,9 @@ server.post('/', authMiddleware, async (req, res) => {
   
 });
 
-//Update Values from a product using product_id (Admins only)
-server.put('/:product_id', authMiddleware, async (req, res) => {
+/*Actualizar valores de un producto. Solo administradores
+Update product's values. Only administrators can do this*/
+server.put('/:product_id', authMiddleware, adminMiddleWare, async (req, res) => {
   try{
   const {name, price, price_discount, image_url, is_available} = req.body;
   await sequelize.query(
@@ -56,8 +58,9 @@ server.put('/:product_id', authMiddleware, async (req, res) => {
   }
 })
 
-//Delete a product using product_id (Admins only)
-server.delete('/:product_id', authMiddleware, async (req, res) => {
+/*Eliminar un producto con su ID. Solo administradores. 
+Delete a product with ID. Only administrators can do this*/
+server.delete('/:product_id', authMiddleware, adminMiddleWare, async (req, res) => {
   try{
     const data = await sequelize.query(
       `DELETE FROM products WHERE product_id = ${req.params.product_id}`,
