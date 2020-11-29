@@ -18,23 +18,32 @@ server.use('/users', userRoutes)
 //config
 const firm = '445698';
 
-server.post('/auth/login', async (req, res) => {
+server.post('/login', async (req, res) => {
   try{
     const {username, password} = req.body
-  const data = await sequelize.query(`SELECT users.*, roles.role_description 
-  FROM users 
-  JOIN roles ON users.role_id = roles.role_id
-  WHERE username = ? AND password = ?`,
-  {replacements: [username, password], type: sequelize.QueryTypes.SELECT}
-  )
-  if(data){
-    let dataJson = JSON.stringify(data)
-    const accessToken = jwt.sign(dataJson, firm)
-    res.json({accessToken})
-  }
-  res.send(data)
-  }
-
+    const userData = await sequelize.query(`SELECT users.*, roles.role_description 
+    FROM users 
+    JOIN roles ON users.role_id = roles.role_id
+    WHERE username = ? AND password = ?`,
+    {replacements: [username, password], type: sequelize.QueryTypes.SELECT}
+    )
+  if(userData.length){
+      const accessToken = jwt.sign({
+      username: userData[0].username,
+      role: userData[0].role_description
+      }, firm)
+      res.send({
+        username: userData[0].username,
+        accessToken
+      })
+      console.log(accessToken)
+    } else{
+      res.StatusCode = 401,
+      res.send({
+        message: "Tu usuario o contraseña no coinciden"
+      })
+    }
+}
   catch(err){
     console.log(err)
   }
