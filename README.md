@@ -24,3 +24,10 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   
 # Primeros pasos 
   
+ 1. Clonar el repositorio
+ 1. Abrir el editor de código e instalar los archivos que se encuentran en el package.json vía npm:
+    npm i o npm install
+    
+    Esto instalará todas las dependencias que se encuentran en el package.json y permitirán utilizar todas las tecnologías descriptas anteriormente
+    
+ 1. 
