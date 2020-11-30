@@ -25,21 +25,19 @@ server.post('/login', async (req, res) => {
     JOIN roles ON users.role_id = roles.role_id
     WHERE username = ? AND password = ?`,
     {replacements: [username, password], type: sequelize.QueryTypes.SELECT})
-  if(userData.length){
-    const accessToken = jwt.sign({
+    if(userData.length){
+      const accessToken = jwt.sign({
       username: userData[0].username,
       role: userData[0].role_description
     }, firmaJwt)
-    res.send({
+      res.send({
         username: userData[0].username,
         accessToken
-    })
+        })
       console.log(accessToken)
     } else{
       res.StatusCode = 401,
-      res.send({
-        message: "Tu usuario o contraseña no coinciden"
-      })
+      res.send("Tu usuario o contraseña no coinciden")
     }
 }
   catch(err){
