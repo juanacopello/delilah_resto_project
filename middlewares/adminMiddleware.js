@@ -3,8 +3,8 @@ const server = express();
 const sequelize = require('../sql');
 
 const AdminMiddleWare = (req, res, next) => {
-  const dataAdmin = sequelize.query('SELECT* FROM users WHERE role_id = 1')
-  if(dataAdmin){
+  const dataAdmin = res.locals.isAdmin
+  if(dataAdmin === "Administrador"){
     next()
   }
   else{
