@@ -18,7 +18,7 @@ server.post('')
 /*Actualizar un pedido. Solo administradores
 Update an order. Only admins can do this */
 
-server.put('/orders/:id', async (req, res) => {
+server.put('/orders/:id', async (req, res) => { //Actualizar via ID del pedido
   try{
       const {order_status_id} = req.body;
       await sequelize.query(`UPDATE orders SET order_status_id = ? WHERE id = ${req.params.id}`,

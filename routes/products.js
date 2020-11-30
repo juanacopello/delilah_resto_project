@@ -7,8 +7,8 @@ const authMiddleware = require('../middlewares/authMiddleware')
 const adminMiddleWare = require('../middlewares/adminMiddleware')
 
 /*Tener un listado de productos habilitados.
-Get the list of available products. Only administrators can do this.*/
-server.get('/', authMiddleware, adminMiddleWare, async (req, res) => {
+Get the list of available products.*/
+server.get('/', authMiddleware, async (req, res) => {
   try{
     const data = await sequelize.query('SELECT* FROM products WHERE is_available = 1',
     {type: sequelize.QueryTypes.SELECT},

@@ -3,8 +3,10 @@ const server = express();
 const sequelize = require('../sql');
 
 const AdminMiddleWare = (req, res, next) => {
-  const dataAdmin = res.locals.isAdmin
-  if(dataAdmin === "Administrador"){
+  /*Guardamos la data que está dentro de 'role' en el Token
+  en authMiddleware.js para usarla aca*/
+  const dataAdmin = res.locals.isAdmin 
+  if(dataAdmin === "Administrador"){ 
     next()
   }
   else{
