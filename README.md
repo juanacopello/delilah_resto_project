@@ -26,8 +26,14 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   
  1. Clonar el repositorio
  1. Abrir el editor de código e instalar los archivos que se encuentran en el package.json vía npm:
+ 
     npm i o npm install
     
     Esto instalará todas las dependencias que se encuentran en el package.json y permitirán utilizar todas las tecnologías descriptas anteriormente
     
- 1. 
+ 1. Importar la base de datos (el archivo .sql) a nuestro administrador de base de datos
+ 1. Por último, se debe ejecutar en la terminal el comando npm start. Esto nos permite inicializar el servidor. A partir de ahora podrá realizar todas las peticiones HTTP.
+ 
+ # Peticiones HTTP
+ 
+ 
