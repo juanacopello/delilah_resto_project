@@ -12,6 +12,8 @@ server.get('/orders', async (req, res) => {
 
 /*Crear un nuevo pedido
 Create a new order */
+
+
 //Que el post permita agregar dstintos tipos de productos
 //mandar por defecto el estado del pedido y despues eso se modifica
 

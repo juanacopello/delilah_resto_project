@@ -1,6 +1,5 @@
 const express = require ('express');
 const server = express();
-//const bodyParser = require('body-parser');
 const sequelize = require('./../sql');
 const jwt = require('jsonwebtoken');
 const config = require('./../config')
