@@ -51,16 +51,20 @@ server.post('/order_products', async (req, res) => {
   }
 })
 
-//Eliminar un producto en una orden a trves del ID de la orden
+//Eliminar un producto en una orden a trves del ID en order_products
 
-server.delete('/order_products/:order_id', async (req, res) => {
+server.delete('/order_products/:id', async (req, res) => {
   try{
     const deleteData = await sequelize.query(
-      `DELETE FROM order_products WHERE order_id = ${req.params.order_id} `
+      `DELETE FROM order_products WHERE id = ${req.params.id}`,
+      {replacements: {id: parseInt(req.params.id)}}
     )
+    res.send("Se ha eliminado el producto de su orden")
+    console.log(deleteData)
   }
-  catch{
-
+  catch(err){
+    res.send(err)
+    console.log(err)
   }
 })
 
@@ -80,7 +84,20 @@ server.put('/orders/:id', async (req, res) => {
   }
 })
 
-
 /*Eliminar una orden. Solo administradores.
 Delete an order. Only administrators can do this */
 
+server.delete('/orders/:id', async (req, res) =>{
+  try{
+    const deleteOrder = await sequelize.query(
+      `DELETE FROM orders WHERE id = ${req.params.id}`,
+      {replacements: {id: parseInt(req.params.id)}}
+      )
+      res.send("Se ha eliminado la orden")
+      console.log(deleteOrder)
+  }
+  catch(err){
+    console.log(err)
+    res.send(err)
+  }
+})
