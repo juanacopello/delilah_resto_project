@@ -34,13 +34,27 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
  Para realizar las peticiones HTTP, se debe indicar la ruta http://localhost:3000/ y luego indicar la ruta correspondiente según el objetivo buscado. 
  
- ##Usuarios
+ ## Usuarios
  
   Con esta plataforma quien posea credenciales de usuario podrá:
   * Registrarse con un nuevo usuario e iniciar sesión a la página
   * Crear una orden y agregar los productos que el usuario desee
   
+  1. Crear un nuevo usuario
+  
+  *POST
+  
+   ```
+  {
+  "username": "Nombre De Usuario",
+   "fullname": "Nombre Y Apellido",
+   "email": "Un Email De Registro",
+   "phone_number": "Su numero de telefono",
+   "address": "Su dirección",
+   "password": "Una contraseña segura"
+  }
+  ```
   
  
- ##Administradores
+ ## Administradores
  
