@@ -1,10 +1,6 @@
 # Delilah Restó 
 Tercer proyecto realizado para el curso de Desarrollo Web Full Stack para Acámica, una academia en Buenos Aires, Argentina. El objetivo era construir una API Rest para que los usuarios puedan administrar una plataforma de delivery online. 
 
-Con esta plataforma quien posea credenciales de usuario podrá:
-  * Registrarse con un nuevo usuario e iniciar sesión a la página
-  * Crear una orden y agregar los productos que el usuario desee
-
 Con esta plataforma quien posea credenciales de administrador podrá: 
   * Acceder a la información de los usuarios que se registran en la página
   * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
@@ -27,7 +23,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  1. Clonar el repositorio
  1. Abrir el editor de código e instalar los archivos que se encuentran en el package.json vía npm:
  
-    npm i o npm install
+    `npm i` o `npm install`
     
     Esto instalará todas las dependencias que se encuentran en el package.json y permitirán utilizar todas las tecnologías descriptas anteriormente
     
@@ -36,4 +32,15 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
  # Peticiones HTTP
  
+ Para realizar las peticiones HTTP, se debe indicar la ruta http://localhost:3000/ y luego indicar la ruta correspondiente según el objetivo buscado. 
+ 
+ ##Usuarios
+ 
+  Con esta plataforma quien posea credenciales de usuario podrá:
+  * Registrarse con un nuevo usuario e iniciar sesión a la página
+  * Crear una orden y agregar los productos que el usuario desee
+  
+  
+ 
+ ##Administradores
  
