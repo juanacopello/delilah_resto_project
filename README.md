@@ -34,7 +34,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
  Para realizar las peticiones HTTP, se debe indicar la ruta http://localhost:3000/ y luego indicar la ruta correspondiente según el objetivo buscado. 
  
- ## Usuarios
+ ### Usuarios
  
   Con esta plataforma quien posea credenciales de usuario podrá:
   * Registrarse con un nuevo usuario e iniciar sesión a la página
@@ -42,8 +42,8 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   
   1. Crear un nuevo usuario
   
-  *POST
-  
+  Para crear un nuevo usuario utilizaremos el método POST en la ruta */users*. Allí mandaremos en formato JSON la siguiente información:
+    
    ```
   {
   "username": "Nombre De Usuario",
@@ -54,7 +54,40 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
    "password": "Una contraseña segura"
   }
   ```
+  Una vez realizado el registro, recibirá el siguiente mensaje `Se registró al usuario con éxito. Puede iniciar sesión y realizar su orden`
   
+  1. Iniciar sesión
+  Se utilizará el método POST en la ruta */login*. Allí se mandará en formato JSON la siguiente información: 
+  ```
+   {
+  "username": "Su Nombre De Usuario",
+   "password": "Su contraseña"
+  }
+  ```
+ El servidor le responderá con su nombre de usuario y con un código de acceso llamado `accessToken`. Este código es muy importante y necesario ya que no solo nos permite realizar las acciones dentro de nuestra sesión sino que también asegura la seguridad de los datos de la misma.
  
- ## Administradores
+ Una vez iniciada la sesión, ya puede comenzar a observar los productos disponibles y realizar una orden.
+ 
+ 1. Conocer los productos disponibles
+ 
+ Para saber cuáles son los productos que se encuentran en stock, se utilizará el método GET a la ruta */products*. 
+ 
+ Esto nos traerá un listado en formato JSON de los productos con su nombre, una imagen, su precio, con el descuento del precio (en caso de no tenerlo, se indicara un 0):
+ 
+ ```
+     {
+        "product_id": 1,
+        "name": "Hamburguesa con lechuga, tomate, jamon y queso",
+        "price": 450,
+        "price_discount": 0,
+        "image_url": "https://pizzeriacherokee.es/wp-content/uploads/2020/05/hamburguesacompleta.jpg",
+        "is_available": 1
+    }
+    
+  ```
+ A partir de estos productos se podrá realizar la orden:
+ 
+ 
+ 
+ ### Administradores
  
