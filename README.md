@@ -93,6 +93,8 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
   * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
   
+  Para realizar las siguientes acciones se debe contar con el token de administrador, que se encuentra bajo el nombre de `accessToken` cuando el usuario realizó el login a la    página. 
+  
   * Acceder a la información de los usuarios 
   
   Se debe realizar una petición de tipo `GET` al endpoint */users*. Esto nos traerá un listado en formato JSON con la información de los usuarios que NO POSEEN credenciales de administrador. Estos datos incluyen: nombre de usuario, el nombre completo, el mail de registro, un número de teléfono, la dirección y la contraseña. 
@@ -116,7 +118,7 @@ Se debe indicar con un 1 si el producto está disponible a la venta. En caso de 
 
 Esto se puede realizar cuando, por ejemplo, se quiere actualizar el precio del producto o la disponibilidad del mismo. También se puede realizar cuando se decide aplicar un descuento al producto por cualquier motivo.
 
-Se debe realizar una petición de tipo `PUT` al endpoint */products* y mandar la siguiente información en formato JSON. No se puede modificar solo uno de los atributos del producto, se deben modificar todos para que logre funcionar el servidor. 
+Se debe realizar una petición de tipo `PUT` al endpoint */products/id*. El id debe ser reemplazado por el número por el que se identifica al producto en la base de datos llamada PRODUCTS. En este caso se encuentra en la columna *product_id*. Se debe mandar la siguiente información en formato JSON. No se puede modificar solo uno de los atributos del producto, se deben modificar todos para que logre funcionar el servidor. 
 
 ```
 {
@@ -136,4 +138,10 @@ Se realiza una petición de tipo `DELETE` al endpoint */products*. Una vez reali
 
 Se realiza una petición de tipo `GET` al endpoint */orders*. En caso de que se realice exitosamente, el servidor devolverá en formato JSON las órdenes realizadas. En caso de que no se cumpla con la petición, se mostrará el error en pantalla. 
 
-* Modificar el estado de
+* Modificar el estado de un pedido
+
+xxxxxxx
+
+* Eliminar un pedido
+
+Se va a realizar una petición del tipo `DELETE` a */orders/id*. El id debe ser reemplazado por el número por el que se identifica a la orden en la base de datos llamada ORDERS. En este caso se encuentra en la columna *id*. Una vez realizada la petición, se mostrará el mensaje "Se ha eliminado la orden".
