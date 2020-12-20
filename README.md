@@ -140,7 +140,16 @@ Se realiza una petición de tipo `GET` al endpoint */orders*. En caso de que se 
 
 * Modificar el estado de un pedido
 
-xxxxxxx
+Se debe realizar una petición de tipo `PUT` a */orders/id*. Se debe reemplazar el ID por el número de identificación de la orden, que se encuentra en la columna *id* de la tabla ORDERS. Para realizar esto  también se debe tener conocimiento de los IDS de los estados de pedido que se encuentran en la tabla ORDER_STATUS.
+
+Se enviará en formato JSON la siguiente información: 
+
+```
+{
+    "order_status_id": 2 // U otro estado de pedido
+}
+```
+Una vez modificado, se enviará el mensaje "Se modificó el estado del pedido"
 
 * Eliminar un pedido
 
