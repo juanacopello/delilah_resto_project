@@ -1,11 +1,6 @@
 # Delilah Restó 
 Tercer proyecto realizado para el curso de Desarrollo Web Full Stack para Acámica, una academia en Buenos Aires, Argentina. El objetivo era construir una API Rest para que los usuarios puedan administrar una plataforma de delivery online. 
 
-Con esta plataforma quien posea credenciales de administrador podrá: 
-  * Acceder a la información de los usuarios que se registran en la página
-  * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
-  * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
-
 # Tecnologías utilizadas
 Para realizar la API se utilizaron las siguientes librerías de Node.js:
   * Express.js: Body Parser y Middlewares para generar el servidor
@@ -42,7 +37,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   
   1. Crear un nuevo usuario
   
-  Para crear un nuevo usuario utilizaremos el método POST en la ruta */users*. Allí mandaremos en formato JSON la siguiente información:
+  Para crear un nuevo usuario utilizaremos el método `POST` en la ruta */users*. Allí mandaremos en formato JSON la siguiente información:
     
    ```
   {
@@ -57,7 +52,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   Una vez realizado el registro, recibirá el siguiente mensaje `Se registró al usuario con éxito. Puede iniciar sesión y realizar su orden`
   
   1. Iniciar sesión
-  Se utilizará el método POST en la ruta */login*. Allí se mandará en formato JSON la siguiente información: 
+  Se utilizará el método `POST` en la ruta */login*. Allí se mandará en formato JSON la siguiente información: 
   ```
    {
   "username": "Su Nombre De Usuario",
@@ -70,7 +65,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
  1. Conocer los productos disponibles
  
- Para saber cuáles son los productos que se encuentran en stock, se utilizará el método GET a la ruta */products*. 
+ Para saber cuáles son los productos que se encuentran en stock, se utilizará el método `GET` a la ruta */products*. 
  
  Esto nos traerá un listado en formato JSON de los productos con su nombre, una imagen, su precio, con el descuento del precio (en caso de no tenerlo, se indicara un 0):
  
@@ -87,7 +82,58 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   ```
  A partir de estos productos se podrá realizar la orden:
  
+ 1. Realizar una orden
  
+ xxxxxxx
  
  ### Administradores
  
+ Con esta plataforma quien posea credenciales de administrador podrá: 
+  * Acceder a la información de los usuarios que se registran en la página
+  * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
+  * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
+  
+  1. Acceder a la información de los usuarios 
+  
+  Se debe realizar una petición de tipo `GET` al endpoint */users*. Esto nos traerá un listado en formato JSON con la información de los usuarios que NO POSEEN credenciales de administrador. Estos datos incluyen: nombre de usuario, el nombre completo, el mail de registro, un número de teléfono, la dirección y la contraseña. 
+  
+  1. Agregar un nuevo producto a la base de datos
+  
+  Se debe realizar una petición de tipo `POST` al endpoint */products*. Se mandará en formato JSON la siguiente información:
+  
+  ```
+  {
+    "name": "botella agua 500cc",
+    "price": 100, 
+    "image_url": "https://statics.dinoonline.com.ar/imagenes/full_600x600_ma/3040033_f.jpg", 
+    "is_available": 1
+}
+  ```
+
+Se debe indicar con un 1 si el producto está disponible a la venta. En caso de no estarlo, se debe indicar un 0 en esa categoría. 
+
+1. Modificar los atributos de un producto.
+
+Esto se puede realizar cuando, por ejemplo, se quiere actualizar el precio del producto o la disponibilidad del mismo. También se puede realizar cuando se decide aplicar un descuento al producto por cualquier motivo.
+
+Se debe realizar una petición de tipo `PUT` al endpoint */products* y mandar la siguiente información en formato JSON. No se puede modificar solo uno de los atributos del producto, se deben modificar todos para que logre funcionar el servidor. 
+
+```
+{
+    "name": "botella vidrio coca comun 250ml",
+    "price": 150,
+    "price_discount": "",
+    "image_url": "https://www.excelsior.com.mx/media/cocacolabotella-1_0.jpg",
+    "is_available": 1
+}
+```
+
+1. Eliminar un producto de la base de datos
+
+Se realiza una petición de tipo `DELETE` al endpoint */products*. Una vez realizado, el servidor le enviará el siguiente mensaje: "Se ha eliminado el producto".
+
+1. Traer un detalle de todos los pedidos realizados
+
+Se realiza una petición de tipo `GET` al endpoint */orders*. En caso de que se realice exitosamente, el servidor devolverá en formato JSON las órdenes realizadas. En caso de que no se cumpla con la petición, se mostrará el error en pantalla. 
+
+1. Modificar el estado de
