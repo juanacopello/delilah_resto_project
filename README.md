@@ -59,7 +59,8 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
    "password": "Su contraseña"
   }
   ```
- El servidor le responderá con su nombre de usuario y con un código de acceso llamado `accessToken`. Este código es muy importante y necesario ya que no solo nos permite realizar las acciones dentro de nuestra sesión sino que también asegura la seguridad de los datos de la misma.
+ El servidor le responderá con su nombre de usuario y con un código de acceso llamado `accessToken`. Este código es muy importante y necesario ya que no solo nos permite realizar las acciones dentro de nuestra sesión sino que también asegura la seguridad de los datos de la misma.  El token debera ser guardado y usado al hacer las peticiones HTTP en el apartado de Authorization e indicar que el valor se trata de un bearer Token.
+
  
  Una vez iniciada la sesión, ya puede comenzar a observar los productos disponibles y realizar una orden.
  
@@ -92,8 +93,8 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   * Acceder a la información de los usuarios que se registran en la página
   * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
   * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
-  
-  Para realizar las siguientes acciones se debe contar con el token de administrador, que se encuentra bajo el nombre de `accessToken` cuando el usuario realizó el login a la    página. 
+
+Las credenciales de administrador se encuentran encriptadas en el `accessToken` que se utiliza para hacer las demás acciones dentro de la sesión. 
   
   * Acceder a la información de los usuarios 
   
