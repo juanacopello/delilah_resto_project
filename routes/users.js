@@ -17,7 +17,7 @@ server.post('/', async (req, res) =>{
         replacements:[username, fullname, email, phone_number, address, password]
       })
   console.log(data)
-  res.sendStatus(200)
+  res.send("Se registró al usuario con éxito. Puede iniciar sesión y realizar su orden")
   }
   catch(err){
     res.send(err)
