@@ -93,11 +93,11 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
   * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
   * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
   
-  1. Acceder a la información de los usuarios 
+  1.Acceder a la información de los usuarios 
   
   Se debe realizar una petición de tipo `GET` al endpoint */users*. Esto nos traerá un listado en formato JSON con la información de los usuarios que NO POSEEN credenciales de administrador. Estos datos incluyen: nombre de usuario, el nombre completo, el mail de registro, un número de teléfono, la dirección y la contraseña. 
   
-  1. Agregar un nuevo producto a la base de datos
+  1.Agregar un nuevo producto a la base de datos
   
   Se debe realizar una petición de tipo `POST` al endpoint */products*. Se mandará en formato JSON la siguiente información:
   
@@ -132,8 +132,8 @@ Se debe realizar una petición de tipo `PUT` al endpoint */products* y mandar la
 
 Se realiza una petición de tipo `DELETE` al endpoint */products*. Una vez realizado, el servidor le enviará el siguiente mensaje: "Se ha eliminado el producto".
 
-1. Traer un detalle de todos los pedidos realizados
+1.Traer un detalle de todos los pedidos realizados
 
 Se realiza una petición de tipo `GET` al endpoint */orders*. En caso de que se realice exitosamente, el servidor devolverá en formato JSON las órdenes realizadas. En caso de que no se cumpla con la petición, se mostrará el error en pantalla. 
 
-1. Modificar el estado de
+1.Modificar el estado de
