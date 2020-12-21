@@ -26,9 +26,9 @@ server.get("/orders", authMiddleware, adminMiddleWare, async (req, res) => {
   }
 });
 
-//Encontrar un pedido por ID
+//Encontrar un pedido por ID. Solo administradores pueden realizar esto.
 
-server.get("orders/:id", async (req, res) => {
+server.get("orders/:id", authMiddleware, adminMiddleWare, async (req, res) => {
   try {
     const orderData = await sequelize.query(
       `SELECT order_status.description order_status, orders.date, orders.id order_id, products.name product_name, payment_methods.name payment_method, users.username username, users.address user_address
@@ -42,7 +42,7 @@ server.get("orders/:id", async (req, res) => {
       { type: sequelize.QueryTypes.SELECT }
     );
     res.send(orderData);
-  } catch (err) {
+  } catch(err) {
     res.status(404).send("No se ha encontrado la orden");
   }
 });
@@ -62,7 +62,7 @@ server.post("/orders", authMiddleware, async (req, res) => {
     );
     console.log(createOrderData);
     const getOrderId = await sequelize.query(
-      "SELECT MAX(order_id) FROM orders",
+      "SELECT MAX(id) FROM orders",
       { type: sql.QueryTypes.SELECT }
     );
     const insertProducts = await sequelize.query(
@@ -70,13 +70,13 @@ server.post("/orders", authMiddleware, async (req, res) => {
       { replacements: [product_id, getOrderId] }
     );
     console.log(insertProducts);
-    res.send("Su orden se  ");
+    res.send("Su orden se ");
   } catch (err) {
     res.send(err);
   }
 });
 
-server.post("/order_products", authMiddleware, async (req, res) => {
+/*server.post("/order_products", authMiddleware, async (req, res) => {
   try {
     const { id, product_id, order_id } = req.body;
     const addProductsData = await sequelize.query(
@@ -89,9 +89,9 @@ server.post("/order_products", authMiddleware, async (req, res) => {
     res.send(err);
     console.log(err);
   }
-});
+});*/
 
-//Eliminar un producto en una orden a trves del ID en order_products
+//Eliminar un producto en una orden a traves del ID en order_products
 
 server.delete("/order_products/:id", authMiddleware, async (req, res) => {
   try {
@@ -123,8 +123,7 @@ server.put("/orders/:id", authMiddleware, adminMiddleWare, async (req, res) => {
   }
 });
 
-/*Eliminar una orden. Solo administradores.
-Delete an order. Only administrators can do this */
+//Eliminar una orden. Delete an order
 
 server.delete(
   "/orders/:id",
@@ -144,3 +143,5 @@ server.delete(
     }
   }
 );
+
+module.exports = server;

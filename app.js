@@ -11,12 +11,13 @@ server.listen(3000, () => console.log("servidor iniciado"));
 const productsRoutes = require('./routes/products') //Productos
 const userRoutes = require('./routes/users') //Usuarios
 const loginRoute = require('./routes/login') //For login
+const orderRoute = require('./routes/orders')
 
 server.use(bodyParser.json());
 server.use('/products', productsRoutes)
 server.use('/users', userRoutes)
 server.use('/login', loginRoute)
-
+server.use('/orders', orderRoute)
 
 server.post('/orders', async (req, res) => {
   try{
@@ -43,20 +44,6 @@ server.post('/order_products', async (req, res) => {
     )
     console.log(addProductsData)
     res.send("Se ha agregado el producto")
-  }
-  catch(err){
-    res.send(err)
-    console.log(err)
-  }
-})
-
-
-server.delete('/orders/:id', async (req, res) => {
-  try{
-    const data = await sequelize.query(
-      `DELETE FROM orders WHERE id = ${req.params.id}`,
-      {replacements: [id = req.params.id] })
-    res.sendStatus(200)  
   }
   catch(err){
     res.send(err)

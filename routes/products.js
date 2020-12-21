@@ -65,7 +65,7 @@ server.delete('/:product_id', authMiddleware, adminMiddleWare, async (req, res) 
     const data = await sequelize.query(
       `DELETE FROM products WHERE product_id = ${req.params.product_id}`,
       {replacements: {id: req.params.product_id} })
-    res.sendStatus(200)  
+    res.send("Se ha eliminado el producto")  
   }
   catch(err){
     res.send(err)
