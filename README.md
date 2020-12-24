@@ -148,14 +148,25 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
  * Realizar una orden
  
- xxxxxxx
+ Se debe realizar al endpoint */orders* a través del método POST. Se debe pasar un **array de objetos** en donde se pasa el ID del usuario - que contiene la información de contacto del mismo - la forma de pago, y el ID del producto o de los productos que el usuario desea.
+ 
+ ```
+ [
+    {"user_id": x (integer)},
+    {"payment_method_id": x (integer)},
+    {"product_id": x (integer)},
+    {"product_id": x (integer)}
+]
+ ```
+ 
+ El ID del usuario y el método de pago se registrarán en la tabla **orders**, mientras que los productos se insertarán en la tabla **order_products**. Con el ID de la orden, se puede identificar en esta última tabla qué productos corresponden a cada orden.
  
  ### Administradores
  
 >>>>>>> 1a82f4a786cb9514b2483d6bf4db2a5645fe6ddc
  Con esta plataforma quien posea credenciales de administrador podrá: 
   * Acceder a la información de los usuarios que se registran en la página
-  * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, el precio o si está disponible) o eliminarlo completamente de la base.
+  * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, si está disponible) o eliminarlo completamente de la base.
   * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
 
 Las credenciales de administrador se encuentran encriptadas en el `accessToken` que se utiliza para hacer las demás acciones dentro de la sesión. 
