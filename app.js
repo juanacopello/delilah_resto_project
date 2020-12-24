@@ -11,7 +11,7 @@ server.listen(3000, () => console.log("servidor iniciado"));
 const productsRoutes = require('./routes/products') //Productos
 const userRoutes = require('./routes/users') //Usuarios
 const loginRoute = require('./routes/login') //For login
-const orderRoute = require('./routes/orders')
+const orderRoute = require('./routes/orders') //Ordenes
 
 server.use(bodyParser.json());
 server.use('/products', productsRoutes)
