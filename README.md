@@ -33,7 +33,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
   Con esta plataforma quien posea credenciales de usuario podrá:
   * Registrarse con un nuevo usuario e iniciar sesión a la página
-  * Crear una orden y agregar los productos que el usuario desee
+  * Crear una orden y agregar los productos disponibles que el usuario desee
   
   * Crear un nuevo usuario
   
@@ -59,7 +59,7 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
    "password": "Su contraseña"
   }
   ```
- El servidor le responderá con su nombre de usuario y con un código de acceso llamado `accessToken`. Este código es muy importante y necesario ya que no solo nos permite realizar las acciones dentro de nuestra sesión sino que también asegura la seguridad de los datos de la misma.  El token debera ser guardado y usado al hacer las peticiones HTTP en el apartado de Authorization e indicar que el valor se trata de un bearer Token.
+ El servidor le responderá con su nombre de usuario y con un código de acceso llamado `accessToken`. Este código es muy importante y necesario ya que no solo nos permite realizar las acciones dentro de nuestra sesión sino que también asegura la seguridad de los datos de la misma.  El token debera ser guardado y usado al hacer las peticiones HTTP en el apartado de Authorization e indicar que el valor se trata de un bearer Token. En caso de no hacerlo, el servidor le indicará que hay un error y no podrá realizar las operaciones.
 
  
  Una vez iniciada la sesión, ya puede comenzar a observar los productos disponibles y realizar una orden.
@@ -103,9 +103,9 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  Con esta plataforma quien posea credenciales de administrador podrá: 
   * Acceder a la información de los usuarios que se registran en la página
   * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, si está disponible) o eliminarlo completamente de la base.
-  * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos) o directamente eliminarlos.
+  * Tener un detalle de todos los pedidos realizados la página, modificar algún atributo de estos (por ejemplo, el estado del pedidos o la forma de pago en caso de que alguno no esté disponible) o directamente eliminarlos.
 
-Las credenciales de administrador se encuentran encriptadas en el `accessToken` que se utiliza para hacer las demás acciones dentro de la sesión. 
+No es necesario realizar otro paso de autenticación. Las credenciales de administrador se encuentran encriptadas en el `accessToken` que se utiliza para hacer las restantes acciones dentro de la sesión. 
   
   * Acceder a la información de los usuarios 
   
@@ -158,7 +158,8 @@ Se enviará en formato JSON la siguiente información:
 
 ```
 {
-    "order_status_id": 2 // U otro estado de pedido
+    "order_status_id": 2, // U otro estado de pedido
+    "payment_method_id": 2 // En caso de que se quiera modificar la forma de pago
 }
 ```
 Una vez modificado, se enviará el mensaje "Se modificó el estado del pedido"
