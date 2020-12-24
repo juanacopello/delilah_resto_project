@@ -100,7 +100,6 @@ Para realizar la API se utilizaron las siguientes librerías de Node.js:
  
  ### Administradores
  
->>>>>>> 1a82f4a786cb9514b2483d6bf4db2a5645fe6ddc
  Con esta plataforma quien posea credenciales de administrador podrá: 
   * Acceder a la información de los usuarios que se registran en la página
   * Agregar un producto nuevo a la base de datos. También podrá modificar los atributos de este producto (como, por ejemplo, si está disponible) o eliminarlo completamente de la base.
