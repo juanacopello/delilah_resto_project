@@ -52,7 +52,7 @@ server.get("/:id", authMiddleware, adminMiddleWare, async (req, res) => {
 Primero se ingresan los datos que debe ingresar el usuario, que se van a almacenar en la tabla Orders,
 y luego se agregan los productos en la tabla order_products*/
 
-server.post("/orders", authmiddleware, async (req, res) => {
+server.post("/", authmiddleware, async (req, res) => {
   try {
     const idUser = Object.values(req.body[0])[0] //Object Values es necesario porque permite identificar la información dentro del array. Si no lo pones, el servidor entiende que estás insertando un NULL
     const paymentMethods = Object.values(req.body[1])[0] //Object Values es necesario porque permite identificar la información dentro del array. Si no lo pones, el servidor entiende que estás insertando un NULL
@@ -79,10 +79,10 @@ Update an order with the ID. Only admins can do this */
 
 server.put("/:id", authMiddleware, adminMiddleWare, async (req, res) => {
   try {
-    const { order_status_id } = req.body;
+    const { order_status_id, payment_method_id } = req.body;
     await sequelize.query(
-      `UPDATE orders SET order_status_id = ? WHERE id = ${req.params.id}`,
-      { replacements: [order_status_id] }
+      `UPDATE orders SET order_status_id = ?, payment_method_id = ? WHERE id = ${req.params.id}`,
+      { replacements: [order_status_id, payment_method_id] }
     );
     res.send("Se modificó el estado del pedido");
   } catch (err) {
