@@ -219,7 +219,3 @@ Una vez modificado, se enviará el mensaje "Se modificó el estado del pedido"
 * Eliminar un pedido
 
 Se va a realizar una petición del tipo `DELETE` a */orders/id*. El id debe ser reemplazado por el número por el que se identifica a la orden en la base de datos llamada ORDERS. En este caso se encuentra en la columna *id*. Una vez realizada la petición, se mostrará el mensaje "Se ha eliminado la orden".
-<<<<<<< HEAD
-
-=======
->>>>>>> 1a82f4a786cb9514b2483d6bf4db2a5645fe6ddc
